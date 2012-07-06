@@ -56,7 +56,13 @@ class Chef
         response_rows.each { |o| block.call(o) unless o.nil?}
         unless (response["start"] + response_rows.length) >= response["total"]
           nstart = response["start"] + rows
-          search(type, query, sort, nstart, rows, &block)
+          args_hash = {
+            :keys => args[:keys],
+            :sort => sort,
+            :start => nstart,
+            :rows => rows
+          }
+          search(type, query, args_hash, &block)  
         end
         true
       else
