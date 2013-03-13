@@ -32,6 +32,8 @@ class Chef
 
     attr_accessor :rest
 
+    @@cache = {}
+
     def initialize(url=nil)
       @rest = ::Chef::REST.new(url || ::Chef::Config[:search_url])
     end
@@ -46,11 +48,14 @@ class Chef
       rows = args.include?(:rows) ? args[:rows] : 1000
       query_string = "search/#{type}?q=#{escape(query)}&sort=#{escape(sort)}&start=#{escape(start)}&rows=#{escape(rows)}"
       if args[:keys]
-        response = @rest.post_rest(query_string, args[:keys])
+        response = args[:cache] && @@cache[query_string] ? @@cache[query_string] : @rest.post_rest(query_string, args[:keys])
         response_rows = response['rows'].map { |row| row['data'] }
       else
-        response = @rest.get_rest(query_string)
+        response = args[:cache] && @@cache[query_string] ? @@cache[query_string] : @rest.get_rest(query_string)
         response_rows = response['rows']
+      end
+      if args[:cache]
+        @@cache[query_string] ||= response
       end
       if block
         response_rows.each { |o| block.call(o) unless o.nil?}
@@ -62,7 +67,7 @@ class Chef
             :start => nstart,
             :rows => rows
           }
-          search(type, query, args_hash, &block)  
+          search(type, query, args_hash, &block)
         end
         true
       else
