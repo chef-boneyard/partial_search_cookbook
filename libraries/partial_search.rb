@@ -32,10 +32,9 @@ class Chef
 
     attr_accessor :rest
 
-    @@cache = {}
-
     def initialize(url=nil)
       @rest = ::Chef::REST.new(url || ::Chef::Config[:search_url])
+      @cache = node.run_state["chef_partial_search_cache"] ||= {}
     end
 
     # Search Solr for objects of a given type, for a given query. If you give
@@ -87,13 +86,13 @@ class Chef
       end
 
       def cache_store(query_string, keys, val)
-        @@cache[query_string] ||= {}
-        @@cache[query_string][keys] ||= val
+        @cache[query_string] ||= {}
+        @cache[query_string][keys] ||= val
       end
 
       def cache_fetch(query_string, keys={})
-        if @@cache[query_string]
-          @@cache[query_string][keys]
+        if @cache[query_string]
+          @cache[query_string][keys]
         end
       end
   end
