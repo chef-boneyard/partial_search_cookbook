@@ -14,6 +14,9 @@ of interest. For example, you can execute a search to return just the
 name and IP addresses of the nodes in your infrastructure rather than
 receiving an array of complete node objects and post-processing them.
 
+Finally, both the `search` and `partial_search` methods allow you to
+cache results to avoid repetitive queries for the same search terms.
+
 Install
 =======
 
@@ -42,6 +45,14 @@ choosing. Consider the following example:
 In the example above, two attributes will be extracted (on the
 server) from the nodes that match the search query. The result will
 be a simple hash with keys 'name'  and 'ip'.
+
+The `:cache` option allows you to retrieve cached search results if available.
+If an identical query was already issued during the current Chef run, its
+results will be immediately returned, thereby avoiding an unnecessary
+round-trip to the server.  For example:
+
+   partial_search(:node, 'role:web', :cache => true,
+                  :keys => ... )
 
 Notes
 =====
