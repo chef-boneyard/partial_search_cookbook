@@ -1,6 +1,5 @@
-Description
-===========
-
+Partial Search Cookbook
+=======================
 Partial Search is a new search API currently available only on Opscode
 Hosted Chef that can be used to reduce the network bandwidth and the
 memory used by chef-client to process search results.
@@ -17,30 +16,32 @@ receiving an array of complete node objects and post-processing them.
 Finally, both the `search` and `partial_search` methods allow you to
 cache results to avoid repetitive queries for the same search terms.
 
-Install
-=======
 
+Install
+-------
 Upload this cookbook and include it in the dependencies of any
 cookbook where you would like to use `partial_search`.
 
-Usage
-=====
 
+Usage
+-----
 When you call `partial_search`, you need to specify the key paths of the
 attributes you want returned. Key paths are specified as an array
 of strings. Each key path is mapped to a short name of your
 choosing. Consider the following example:
 
-    partial_search(:node, 'role:web',
-       :keys => { 'name' => [ 'name' ],
-                  'ip'   => [ 'ipaddress' ],
-                  'kernel_version' => [ 'kernel', 'version' ]
-                }
-    ).each do |result|
-      puts result['name']
-      puts result['ip']
-      puts result['kernel_version']
-    end
+```ruby
+partial_search(:node, 'role:web',
+   :keys => { 'name' => [ 'name' ],
+              'ip'   => [ 'ipaddress' ],
+              'kernel_version' => [ 'kernel', 'version' ]
+            }
+).each do |result|
+  puts result['name']
+  puts result['ip']
+  puts result['kernel_version']
+end
+```
 
 In the example above, two attributes will be extracted (on the
 server) from the nodes that match the search query. The result will
@@ -51,12 +52,13 @@ If an identical query was already issued during the current Chef run, its
 results will be immediately returned, thereby avoiding an unnecessary
 round-trip to the server.  For example:
 
-   partial_search(:node, 'role:web', :cache => true,
-                  :keys => ... )
+```ruby
+partial_search(:node, 'role:web', cache: true, keys: ...)
+```
+
 
 Notes
-=====
-
+-----
 * We would like your feedback on this feature and the interface
   provided by this cookbook. Please send comments to the chef-dev
   mailing list.
@@ -67,12 +69,14 @@ Notes
 * The partial search API is available in Opscode Private Chef since
   1.2.2
 
-License and Author
-==================
 
+License & Authors
+-----------------
 - Author:: Adam Jacob (<adam@opscode.com>)
 - Author:: John Keiser (<jkeiser@opscode.com>)
-- Copyright:: 2012, Opscode, Inc.
+
+```text
+Copyright:: 2012-2013, Opscode, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -85,3 +89,4 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+```
