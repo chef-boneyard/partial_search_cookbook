@@ -3,6 +3,12 @@ partial_search Cookbook CHANGELOG
 This file is used to list changes made in each version of the partial_search cookbook.
 
 
+v1.0.4
+------
+### New Feature
+- **[COOK-2584](https://tickets.opscode.com/browse/COOK-2584)** - Add client-side result cache
+
+
 v1.0.2
 ------
 ### Bug
