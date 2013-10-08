@@ -1,10 +1,15 @@
-## v1.0.2:
+partial_search Cookbook CHANGELOG
+=================================
+This file is used to list changes made in each version of the partial_search cookbook.
 
+
+v1.0.2
+------
 ### Bug
 
 - [COOK-3164]: `partial_search` should use
   `Chef::Config[:chef_server_url]` instead of `search_url`
 
-## v1.0.0:
-
+v1.0.0
+------
 - Initial release
