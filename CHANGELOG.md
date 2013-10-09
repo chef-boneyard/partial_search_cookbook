@@ -3,6 +3,11 @@ partial_search Cookbook CHANGELOG
 This file is used to list changes made in each version of the partial_search cookbook.
 
 
+v1.0.6
+------
+- **Hotfix** - Revert client-side caching bug
+
+
 v1.0.4
 ------
 ### New Feature
