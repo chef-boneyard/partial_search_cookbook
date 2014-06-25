@@ -32,6 +32,8 @@ class Chef
 
     attr_accessor :rest
 
+    @@cache = {}
+
     def initialize(url=nil)
       @rest = ::Chef::REST.new(url || ::Chef::Config[:chef_server_url])
     end
@@ -46,11 +48,16 @@ class Chef
       rows = args.include?(:rows) ? args[:rows] : 1000
       query_string = "search/#{type}?q=#{escape(query)}&sort=#{escape(sort)}&start=#{escape(start)}&rows=#{escape(rows)}"
       if args[:keys]
-        response = @rest.post_rest(query_string, args[:keys])
+        response = args[:cache] ? cache_fetch(query_string, args[:keys]) : nil
+        response ||= @rest.post_rest(query_string, args[:keys])
         response_rows = response['rows'].map { |row| row['data'] }
       else
-        response = @rest.get_rest(query_string)
+        response = args[:cache] ? cache_fetch(query_string) : nil
+        response ||= @rest.get_rest(query_string)
         response_rows = response['rows']
+      end
+      if args[:cache]
+        cache_store(query_string, args[:keys], response)
       end
       if block
         response_rows.each { |o| block.call(o) unless o.nil?}
@@ -77,6 +84,17 @@ class Chef
     private
       def escape(s)
         s && URI.escape(s.to_s)
+      end
+
+      def cache_store(query_string, keys, val)
+        @@cache[query_string] ||= {}
+        @@cache[query_string][keys] ||= val
+      end
+
+      def cache_fetch(query_string, keys={})
+        if @@cache[query_string]
+          @@cache[query_string][keys]
+        end
       end
   end
 end
