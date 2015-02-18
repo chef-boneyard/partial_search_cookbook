@@ -16,7 +16,7 @@ v1.0.6
 v1.0.4
 ------
 ### New Feature
-- **[COOK-2584](https://tickets.opscode.com/browse/COOK-2584)** - Add client-side result cache
+- **[COOK-2584](https://tickets.chef.io/browse/COOK-2584)** - Add client-side result cache
 
 
 v1.0.2

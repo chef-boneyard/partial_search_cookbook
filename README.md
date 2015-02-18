@@ -1,6 +1,6 @@
 Partial Search Cookbook
 =======================
-[Partial Search](http://docs.opscode.com/essentials_search.html#partial-search)
+[Partial Search](http://docs.chef.io/essentials_search.html#partial-search)
 is a search API available on Chef Server. (see Notes below for version compatibility)  
 It can be used to reduce the network bandwidth and the memory used by
 chef-client to process search results.
@@ -62,11 +62,11 @@ Notes
 
 License & Authors
 -----------------
-- Author:: Adam Jacob (<adam@opscode.com>)
-- Author:: John Keiser (<jkeiser@opscode.com>)
+- Author:: Adam Jacob (<adam@chef.io>)
+- Author:: John Keiser (<jkeiser@chef.io>)
 
 ```text
-Copyright:: 2012-2013, Opscode, Inc.
+Copyright:: 2012-2013, Chef Software, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
