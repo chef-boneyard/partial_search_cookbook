@@ -9,9 +9,6 @@ This cookbook provides an experimental interface to the partial search
 API by providing a `partial_search` method that can be used instead of
 the `search` method in your recipes.
 
-Since Chef Client 11.10.0 the partial_search capability has been built-in
-so it does not require this cookbook.
-
 The `partial_search` method allows you to retrieve just the attributes
 of interest. For example, you can execute a search to return just the
 name and IP addresses of the nodes in your infrastructure rather than
