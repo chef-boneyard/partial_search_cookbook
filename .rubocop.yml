@@ -12,3 +12,11 @@ MethodLength:
   Enabled: false
 SingleSpaceBeforeFirstArg:
   Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
