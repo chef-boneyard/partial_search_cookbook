@@ -1,5 +1,8 @@
 Partial Search Cookbook
 =======================
+[![Build Status](https://travis-ci.org/chef-cookbooks/partial_search.svg?branch=master)](http://travis-ci.org/chef-cookbooks/partial_search)
+[![Cookbook Version](https://img.shields.io/cookbook/v/partial_search.svg)](https://supermarket.chef.io/cookbooks/partial_search)
+
 [Partial Search](http://docs.chef.io/essentials_search.html#partial-search)
 is a search API available on Chef Server. (see Notes below for version compatibility)  
 It can be used to reduce the network bandwidth and the memory used by
@@ -63,7 +66,7 @@ License & Authors
 - Author:: John Keiser (<jkeiser@chef.io>)
 
 ```text
-Copyright:: 2012-2013, Chef Software, Inc.
+Copyright:: 2012-2015, Chef Software, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
