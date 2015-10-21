@@ -4,7 +4,7 @@ Partial Search Cookbook
 [![Cookbook Version](https://img.shields.io/cookbook/v/partial_search.svg)](https://supermarket.chef.io/cookbooks/partial_search)
 
 [Partial Search](http://docs.chef.io/essentials_search.html#partial-search)
-is a search API available on Chef Server. (see Notes below for version compatibility)  
+is a search API available on Chef Server. (see Notes below for version compatibility)
 It can be used to reduce the network bandwidth and the memory used by
 chef-client to process search results.
 
@@ -17,6 +17,8 @@ of interest. For example, you can execute a search to return just the
 name and IP addresses of the nodes in your infrastructure rather than
 receiving an array of complete node objects and post-processing them.
 
+NOTE: Since Chef Client 12.0 the partial_search capability has been built-in
+so it does not require this cookbook.
 
 Install
 -------
