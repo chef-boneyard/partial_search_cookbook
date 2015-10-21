@@ -3,7 +3,7 @@ Partial Search Cookbook
 [![Build Status](https://travis-ci.org/chef-cookbooks/partial_search.svg?branch=master)](http://travis-ci.org/chef-cookbooks/partial_search)
 [![Cookbook Version](https://img.shields.io/cookbook/v/partial_search.svg)](https://supermarket.chef.io/cookbooks/partial_search)
 
-[Partial Search](http://docs.chef.io/essentials_search.html#partial-search)
+[Partial Search](https://docs.chef.io/chef_search.html#partial-search)
 is a search API available on Chef Server. (see Notes below for version compatibility)
 It can be used to reduce the network bandwidth and the memory used by
 chef-client to process search results.
